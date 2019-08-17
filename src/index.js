@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Game from './Game.jsx';  
 
-  // ========================================
+import App from './Assignment/Assignment2/src/App'
   
-  ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
+  ReactDOM.render(<App />, document.getElementById('root')
   );

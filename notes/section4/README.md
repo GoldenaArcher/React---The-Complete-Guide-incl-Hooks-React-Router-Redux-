@@ -78,12 +78,12 @@ The anonymous function is passed to the `map` function to do the samething for e
 	}
 
 	...
-	{this.state.persons.map{(person, index) => {
+	{this.state.persons.map((person, index) => {
 		return <Person 
 				click={() => this.deletePersonHandler(index)} 
 				name={person.name} 
 				age={person.age} />;
-	}}}
+	})}
 ```
 
 Alternative for `click={() => this.deletePersonHandler(index)` is `click={() => this.deletePersonHandler.bind(this, index)}`.
@@ -104,13 +104,13 @@ It is always recommended to modify state in an immutable fashion.
 
 ```javascript
 	...
-	{this.state.persons.map{(person, index) => {
+	{this.state.persons.map((person, index) => {
 		return <Person 
 				key={index}
 				click={() => this.deletePersonHandler(index)} 
 				name={person.name} 
 				age={person.age} />;
-	}}}
+	})}
 ```
 
 `keys` help to modify the virtual DOM faster as it can easily locate the nodes that needed to be modified in the virtual DOM tree.
@@ -144,14 +144,14 @@ It is recommended to use unique value for the key property, typically some uniqu
 	}
 
 	...
-	{this.state.persons.map{(person, index) => {
+	{this.state.persons.map((person, index) => {
 		return <Person 
 				key={index}
 				click={() => this.deletePersonHandler(index)} 
 				name={person.name} 
 				age={person.age} 
 				changed={(event) => this.nameChangedHandler(event, person.id)} />;
-	}}}
+	})}
 ```
 
 Updating the state without mutate the state directly.

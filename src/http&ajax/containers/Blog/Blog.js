@@ -12,34 +12,42 @@ class Blog extends Component {
     state = {
         posts: [],
         selectedPostId: null,
+        error: false,
     }
 
     componentDidMount() {
         // happened asynchrously, directly store does not work
         // axios uses promise
-        axios.get('http://jsonplaceholder.typicode.com/posts')
+        axios.get('/posts')
             .then(response => {
                 const posts = response.data.slice(0, 4);
-                const updatedPosts = posts.map(post => 
+                const updatedPosts = posts.map(post =>
                     ({
                         ...post,
                         author: 'Max',
                     })
                 )
-                this.setState({posts: updatedPosts});
-            }); 
+                this.setState({ posts: updatedPosts });
+            })
+            .catch(err => {
+                // console.log(err)
+                this.setState({ error: true })
+            });
     }
 
     postSelectedHandler = (id) => {
-        this.setState({selectedPostId: id})
+        this.setState({ selectedPostId: id })
     }
 
-    render () {
-        const posts = this.state.posts.map(post =>
-            <Post title={post.title} key={post.id} 
-                    author={post.author} 
-                    clicked={() => this.postSelectedHandler(post.id)}/>
-        );
+    render() {
+        let posts = <p style={{ textAlign: "center" }}>Something went wrong</p>;
+        if (!this.state.error) {
+            posts = this.state.posts.map(post =>
+                <Post title={post.title} key={post.id}
+                    author={post.author}
+                    clicked={() => this.postSelectedHandler(post.id)} />
+            );
+        }
 
         return (
             <div>

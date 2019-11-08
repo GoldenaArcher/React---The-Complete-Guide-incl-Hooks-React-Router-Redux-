@@ -43,3 +43,21 @@ axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com';
 axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 ```
+
+## 203. Creating and Using Axios Instances
+
+Create instance in js file such as:
+
+```javascript
+import axios from 'axios';
+
+const instance = axios.create({
+    baseURL: 'http://jsonplaceholder.typicode.com',
+});
+
+instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM AXIOS INSTANCE';
+
+export default instance;
+```
+
+Then import such file instead of axios package.

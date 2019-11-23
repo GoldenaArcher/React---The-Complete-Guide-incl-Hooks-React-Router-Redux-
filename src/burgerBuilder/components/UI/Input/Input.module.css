@@ -25,3 +25,13 @@
     outline: none;
     background-color: #ccc;
 }
+
+.Invalid {
+    border: 1px solid red;
+    background-color: rgb(250, 77, 58);
+}
+
+.Error {
+    color: red;
+    margin: 5px 0;
+}

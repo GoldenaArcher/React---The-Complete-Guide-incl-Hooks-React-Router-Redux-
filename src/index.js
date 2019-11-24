@@ -2,11 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import {BrowserRouter} from 'react-router-dom';
+import { createStore } from 'redux';
 
-import App from './burgerBuilder/App'
+// router, for http-ajax section
+// import {BrowserRouter} from 'react-router-dom';
+
+// the actual burger build app
+// import App from './burgerBuilder/App'
+
+// redux app
+import App from './redux/src/App'
+
+// ajax as seen here
 // import App from './http&ajax/App';
-// import App from './Assignment/Assignment3/src/App';
 
 /*
 // http&ajax/App related content
@@ -34,7 +42,21 @@ axios.interceptors.response.use(request => {
   return Promise.reject(error);
 })
 */
-  
-  ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root')
-  // ReactDOM.render(<App />, document.getElementById('root')
-  );
+
+import reducer from './redux/src/store/reducer';
+import { Provider } from 'react-redux';
+
+// redux related config here
+const store = createStore(reducer);
+
+
+// burger build dom render, wrap everything in a router component
+// ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root')
+
+// other dom render
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root')
+);

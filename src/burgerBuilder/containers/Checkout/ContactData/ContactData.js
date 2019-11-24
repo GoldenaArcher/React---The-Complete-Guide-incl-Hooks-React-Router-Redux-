@@ -88,6 +88,7 @@ class ContactData extends Component {
                         { value: 'standard', displayValue: 'Standard' },
                     ],
                 },
+                value: 'fastest', 
                 validation: {
                     required: false,
                 },
@@ -95,6 +96,7 @@ class ContactData extends Component {
                 touched: false,
             }
         },
+        formIsValid: false,
         loading: false,
     }
 
@@ -154,8 +156,15 @@ class ContactData extends Component {
 
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-        console.log(updatedFormElement)
-        this.setState({ orderForm: updatedOrderForm })
+        let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid; 
+        }
+
+        this.setState({ 
+            orderForm: updatedOrderForm,
+            formIsValid: formIsValid,
+        })
     }
 
     render() {
@@ -177,7 +186,7 @@ class ContactData extends Component {
                     touched={formElement.config.touched}
                     changed={(e) => this.inputChangeHandler(e, formElement.id)} />
             })}
-            <Button btnType="Success">ORDER</Button>
+            <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
         </form>);
         if (this.state.loading) {
             form = <Spinner />;

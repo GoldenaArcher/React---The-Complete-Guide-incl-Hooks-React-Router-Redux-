@@ -1,28 +1,39 @@
 const initialState = {
     counter: 0,
+    results: [],
 }
 
 const reducer = (state = initialState, action) => {
-    let count = 0;
+    const newState = Object.assign({}, state);
+    const newStateResult = [...newState.results];
     switch (action.type) {
         case 'INCREMENT':
-            count = state.counter + 1;
+            newState.counter = newState.counter + 1;
             break;
         case 'DECREMENT':
-            count = state.counter - 1;
+            newState.counter = newState.counter - 1;
             break;
         case 'ADD':
-            count = state.counter + action.payload.value;
+            newState.counter = newState.counter + action.payload.value;
             break;
         case 'SUBTRACT':
-            count = state.counter - action.payload.value;
+            newState.counter = newState.counter - action.payload.value;
+            break;
+        case 'STORE_RESULT':
+            newStateResult.push(
+                { id: new Date(), value: newState.counter }
+            );
+            break;
+        case 'DELETE_RESULT':
+            const id = 2;
+            newStateResult.splice(id, 1);
             break;
         default:
-            count = state.counter
             break;
     }
+    newState.results = newStateResult;
 
-    return {counter: count};
+    return newState;
 }
 
 export default reducer

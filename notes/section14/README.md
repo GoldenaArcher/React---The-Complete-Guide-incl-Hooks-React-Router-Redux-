@@ -24,3 +24,7 @@
 ## 288. Connecting React to Redux
 
 Store should be created right before or when the application is starts. So the `index.js` is the perfect place.
+
+## 294. Updating Arrays Immutably
+
+Checkout `filter` method.

@@ -1,39 +1,41 @@
-const initialState = {
-    counter: 0,
-    results: [],
-}
+// this reducer is not needed anymore
 
-const reducer = (state = initialState, action) => {
-    const newState = Object.assign({}, state);
-    const newStateResult = [...newState.results];
-    switch (action.type) {
-        case 'INCREMENT':
-            newState.counter = newState.counter + 1;
-            break;
-        case 'DECREMENT':
-            newState.counter = newState.counter - 1;
-            break;
-        case 'ADD':
-            newState.counter = newState.counter + action.payload.value;
-            break;
-        case 'SUBTRACT':
-            newState.counter = newState.counter - action.payload.value;
-            break;
-        case 'STORE_RESULT':
-            newStateResult.push(
-                { id: new Date(), value: newState.counter }
-            );
-            break;
-        case 'DELETE_RESULT':
-            const id = 2;
-            newStateResult.splice(id, 1);
-            break;
-        default:
-            break;
-    }
-    newState.results = newStateResult;
+// import * as actionTypes from './actions';
 
-    return newState;
-}
+// const initialState = {
+//     counter: 0,
+//     results: [],
+// }
 
-export default reducer
+// const reducer = (state = initialState, action) => {
+//     const newState = Object.assign({}, state);
+//     let newStateResult = [...newState.results];
+//     switch (action.type) {
+//         case actionTypes.INCREMENT:
+//             newState.counter = newState.counter + 1;
+//             break;
+//         case actionTypes.DECREMENT:
+//             newState.counter = newState.counter - 1;
+//             break;
+//         case actionTypes.ADD:
+//             newState.counter = newState.counter + action.payload.value;
+//             break;
+//         case actionTypes.SUBTRACT:
+//             newState.counter = newState.counter - action.payload.value;
+//             break;
+//         case actionTypes.STORE_RESULT:
+//             newStateResult.push(
+//                 { id: new Date(), value: newState.counter }
+//             );
+//             break;
+//         case actionTypes.DELETE_RESULT:
+//             newStateResult = newStateResult.filter(result => result.id !== action.id)
+//             break;
+//         default:
+//             break;
+//     }
+//     newState.results = newStateResult;
+//     return newState;
+// }
+
+// export default reducer
